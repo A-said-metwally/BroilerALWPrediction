@@ -9,6 +9,7 @@ import InputsTable from '../components/InputsTable';
 import { broilerDf } from '../data/broilerDf';
 import * as tf from '@tensorflow/tfjs';
 import PredictionTable from '../components/PredictionTable';
+import Link from 'next/link';
 
 
 const ML = () => {
@@ -94,17 +95,16 @@ const ML = () => {
         setPredictedResults([...x])
     }
 
-    
-    console.log('prediected avg l wt is', PredictedResults);
+ 
 
     return (
         <div className='flex flex-col items-center justify-center mb-10'>
-            <Header title={''}/>
+            <Header title={'Wt Broiler Brediction Model'}/>
 
             <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
                 <img src='./ml.jpg' alt="" className='h-[100px] w-[100px] rounded-full'/>
                 <h1 className='font-serif text-3xl text-center text-gray-600 duration-100 ease-in-out animate-pulse'
-                    >Broiler Avg Live Weight Predection ML Model <a href='/about' className='text-sm text-red-500'>Learn More</a></h1>
+                    >Broiler Avg Live Weight Predection ML Model <Link href='/about' className='text-sm text-red-500'>Learn More</Link></h1>
             </div>
 
             <div className='container relative'>

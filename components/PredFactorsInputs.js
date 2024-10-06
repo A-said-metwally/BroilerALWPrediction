@@ -37,49 +37,49 @@ const PredFactorsInputs = ({addInputs, PredictedResults}) => {
         <div>
             <div className='container flex-row justify-center mt-10 space-y-3 sm:flex sm:items-end sm:justify-between sm:space-x-3' >
                 <div className='flex flex-col flex-1'>
-                    <label for="factor1" className='font-semibold text-blue-700'>Farm Describtion</label>
+                    <label htmlFor="factor1" className='font-semibold text-blue-700'>Farm Describtion</label>
                     <input id='factor1' type='text' value = {Inputs.farmNo} 
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "farmNo":e.target.value})}
                     />
                 </div>
                 <div className='flex flex-col flex-1'>
-                    <label for="factor2" className='font-semibold text-blue-700'>House Describtion</label>
+                    <label htmlFor="factor2" className='font-semibold text-blue-700'>House Describtion</label>
                     <input id='factor2' type='text'  value = {Inputs.houseNo}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "houseNo":e.target.value})}
                     />
                 </div>                
                 <div className='flex flex-col flex-1'>
-                    <label for="factor3" className='font-semibold text-blue-700'>Zero Body Wt.</label>
+                    <label htmlFor="factor3" className='font-semibold text-blue-700'>Zero Body Wt.</label>
                     <input id='factor3' type='number'  value = {Inputs.wt0}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "wt0":+e.target.value})}
                     />
                 </div>                
                 <div className='flex flex-col flex-1'>
-                    <label for="factor4" className='font-semibold text-blue-700'>4 Days Wt.</label>
+                    <label htmlFor="factor4" className='font-semibold text-blue-700'>4 Days Wt.</label>
                     <input id='factor4' type='number'  value = {Inputs.wt4}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "wt4":+e.target.value})}
                     />
                 </div>                
                 <div className='flex flex-col flex-1'>
-                    <label for="factor5" className='font-semibold text-blue-700'>7 Days Wt.</label>
+                    <label htmlFor="factor5" className='font-semibold text-blue-700'>7 Days Wt.</label>
                     <input id='factor5' type='number'  value = {Inputs.wt7}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "wt7":+e.target.value})}
                     />
                 </div>                
                 <div className='flex flex-col flex-1'>
-                    <label for="factor6" className='font-semibold text-blue-700'>14 Days Wt.</label>
+                    <label htmlFor="factor6" className='font-semibold text-blue-700'>14 Days Wt.</label>
                     <input id='factor6' type='number'  value = {Inputs.wt14}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "wt14":+e.target.value})}
                     />
                 </div>
                 <div className='flex flex-col flex-1'>
-                    <label for="factor7" className='font-semibold text-blue-700'>21 Days Wt.</label>
+                    <label htmlFor="factor7" className='font-semibold text-blue-700'>21 Days Wt.</label>
                     <input id='factor7' type='number'  value = {Inputs.wt21}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "wt21":+e.target.value})}
