@@ -67,7 +67,7 @@ useEffect(() => {
 
     // Model training with reduced epochs
     model.compile({ loss: 'meanSquaredError', optimizer: tf.train.adam(0.01) });
-    await model.fit(xs, ys, { epochs: 100, batchSize: 32 }); // Use batchSize
+    await model.fit(xs, ys, { epochs: 200, batchSize: 32 }); // Use batchSize
 
     setModel(model);
     setMaxValues(newMaxValues);
@@ -97,17 +97,17 @@ useEffect(() => {
         <div className='flex flex-col items-center justify-center mb-10'>
             <Header title={'Wt Broiler Brediction Model'}/>
 
-            <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
+            {model != null && <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
                 <img src='./ml.jpg' alt="" className='h-[100px] w-[100px] rounded-full'/>
                 <h1 className='font-serif text-3xl text-center text-gray-600 duration-100 ease-in-out animate-pulse'
                     >Broiler Avg Live Weight Predection ML Model v1
                      <Link href='/about' >
-                        <span className="text-sm text-red-500"> Learn More</span>
+                        <span className="text-sm text-red-500 hover:cursor-pointer"> Learn More</span>
                     </Link></h1>
             </div>
-
+            }
             <div className='container relative'>
-                {model == null && <Loading Icon = {CogIcon} title={"Please Wait Until Preparing Model"}/>}
+                {model == null && <Loading Icon = {CogIcon} title={"Please Wait One Minute Until Preparing Model"}/>}
 
                 {model != null && <PredFactorsInputs addInputs = {addInputs} PredictedResults = {PredictedResults}/>}
 
