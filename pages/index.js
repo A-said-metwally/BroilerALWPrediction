@@ -100,7 +100,10 @@ useEffect(() => {
             <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
                 <img src='./ml.jpg' alt="" className='h-[100px] w-[100px] rounded-full'/>
                 <h1 className='font-serif text-3xl text-center text-gray-600 duration-100 ease-in-out animate-pulse'
-                    >Broiler Avg Live Weight Predection ML Model <Link href='/about' className='text-sm text-red-500'>Learn More</Link></h1>
+                    >Broiler Avg Live Weight Predection ML Model v1
+                     <Link href='/about' >
+                        <span className="text-sm text-red-500"> Learn More</span>
+                    </Link></h1>
             </div>
 
             <div className='container relative'>
