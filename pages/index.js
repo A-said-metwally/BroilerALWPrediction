@@ -27,58 +27,54 @@ const ML = () => {
 
 // prediction fucntion
   
-    const [model, setModel] = useState(null);
-    const [maxValues, setMaxValues] = useState([0, 0, 0, 0, 0]); // Initialize maxValues
-  
-    useEffect(() => {
-      async function loadModel() {
-        const features = [];
-        const targets = [];
-  
-        // Ensure features are valid numbers and avoid missing data
-        for (const dataPoint of broilerDf) {
-          if (isNaN(dataPoint.wt0) || isNaN(dataPoint.wt4) || isNaN(dataPoint.wt7) || isNaN(dataPoint.wt14) || isNaN(dataPoint.wt21)) {
-            console.warn("Skipping data point with invalid features:", dataPoint);
-            continue;
-          }
-          features.push([dataPoint.wt0, dataPoint.wt4, dataPoint.wt7, dataPoint.wt14, dataPoint.wt21]);
-          targets.push(dataPoint.alwt);
-        }
-  
-        // Normalize features
-        const newMaxValues = features.reduce((acc, point) => {
-          acc[0] = Math.max(acc[0], point[0]);
-          acc[1] = Math.max(acc[1], point[1]);
-          acc[2] = Math.max(acc[2], point[2]);
-          acc[3] = Math.max(acc[2], point[3]);
-          acc[4] = Math.max(acc[2], point[4]);
-          return acc;
-        }, [0, 0, 0, 0, 0]);
-  
-        const normalizedFeatures = features.map(point =>
-          point.map((value, index) => value / newMaxValues[index])
-        );
-  
-        const xs = tf.tensor2d(normalizedFeatures, [normalizedFeatures.length, 5]);
-        const ys = tf.tensor1d(targets, 'float32');
-  
-        // Model definition
-        const model = tf.sequential();
-        model.add(tf.layers.dense({ units: 10, inputShape: [5] }));
-        model.add(tf.layers.dense({ units: 1 }));
-  
-        // Model training
-        model.compile({ loss: 'meanSquaredError', optimizer: tf.train.adam(0.01) });
-        await model.fit(xs, ys, { epochs: 250 });
-  
-        setModel(model);
-        setMaxValues(newMaxValues);
-      }
-  
-      loadModel();
-    }, []);
-  
+const [model, setModel] = useState(null);
+const [maxValues, setMaxValues] = useState([0, 0, 0, 0, 0]);
 
+useEffect(() => {
+  async function loadModel() {
+    const features = [];
+    const targets = [];
+  
+    for (const dataPoint of broilerDf) {
+      const { wt0, wt4, wt7, wt14, wt21, alwt } = dataPoint;
+      if ([wt0, wt4, wt7, wt14, wt21].some(isNaN)) {
+        console.warn("Skipping data point with invalid features:", dataPoint);
+        continue;
+      }
+      features.push([wt0, wt4, wt7, wt14, wt21]);
+      targets.push(alwt);
+    }
+
+    // Calculate max values for normalization
+    const newMaxValues = features.reduce((acc, point) => {
+      for (let i = 0; i < point.length; i++) {
+        acc[i] = Math.max(acc[i], point[i]);
+      }
+      return acc;
+    }, Array(5).fill(0));
+
+    // Normalize features
+    const normalizedFeatures = features.map(point =>
+      point.map((value, index) => value / newMaxValues[index])
+    );
+
+    const xs = tf.tensor2d(normalizedFeatures, [normalizedFeatures.length, 5]);
+    const ys = tf.tensor1d(targets, 'float32');
+
+    const model = tf.sequential();
+    model.add(tf.layers.dense({ units: 10, inputShape: [5] }));
+    model.add(tf.layers.dense({ units: 1 }));
+
+    // Model training with reduced epochs
+    model.compile({ loss: 'meanSquaredError', optimizer: tf.train.adam(0.01) });
+    await model.fit(xs, ys, { epochs: 100, batchSize: 32 }); // Use batchSize
+
+    setModel(model);
+    setMaxValues(newMaxValues);
+  }
+
+  loadModel();
+}, []);
 
 
 
