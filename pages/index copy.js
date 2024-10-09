@@ -7,7 +7,7 @@ import PredFactorsInputs from '../components/PredFactorsInputs';
 import Loading from '../components/Loading';
 import InputsTable from '../components/InputsTable';
 import { broilerDf } from '../data/broilerDf';
-import  {broilerDf2}  from '../data/broilerDf2';
+import  broilerDf2  from '../data/broilerDf2';
 import * as tf from '@tensorflow/tfjs';
 import PredictionTable from '../components/PredictionTable';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ import Link from 'next/link';
 
 const ML = () => {
 
-
+console.log(broilerDf2);
     const [Inputs, setInputs] = useState([])
     const [PredictedResults, setPredictedResults] = useState([])
 
@@ -29,20 +29,20 @@ const ML = () => {
 // prediction fucntion
   
 const [model, setModel] = useState(null);
-const [maxValues, setMaxValues] = useState([0, 0, 0, 0, 0, 0]);
+const [maxValues, setMaxValues] = useState([0, 0, 0, 0, 0]);
 
 useEffect(() => {
   async function loadModel() {
     const features = [];
     const targets = [];
   
-    for (const dataPoint of broilerDf2) {
-      const { wt0, wt4, wt7, wt14, wt21, age, alwt } = dataPoint;
-      if ([wt0, wt4, wt7, wt14, wt21, age].some(isNaN)) {
+    for (const dataPoint of broilerDf) {
+      const { wt0, wt4, wt7, wt14, wt21, alwt } = dataPoint;
+      if ([wt0, wt4, wt7, wt14, wt21].some(isNaN)) {
         console.warn("Skipping data point with invalid features:", dataPoint);
         continue;
       }
-      features.push([wt0, wt4, wt7, wt14, wt21, age]);
+      features.push([wt0, wt4, wt7, wt14, wt21]);
       targets.push(alwt);
     }
 
@@ -52,18 +52,18 @@ useEffect(() => {
         acc[i] = Math.max(acc[i], point[i]);
       }
       return acc;
-    }, Array(6).fill(0));
+    }, Array(5).fill(0));
 
     // Normalize features
     const normalizedFeatures = features.map(point =>
       point.map((value, index) => value / newMaxValues[index])
     );
 
-    const xs = tf.tensor2d(normalizedFeatures, [normalizedFeatures.length, 6]);
+    const xs = tf.tensor2d(normalizedFeatures, [normalizedFeatures.length, 5]);
     const ys = tf.tensor1d(targets, 'float32');
 
     const model = tf.sequential();
-    model.add(tf.layers.dense({ units: 10, inputShape: [6] }));
+    model.add(tf.layers.dense({ units: 10, inputShape: [5] }));
     model.add(tf.layers.dense({ units: 1 }));
 
     // Model training with reduced epochs
@@ -83,9 +83,9 @@ useEffect(() => {
         setPredictedResults([])
         let x = []
         for(let i = 0; i < Inputs.length; i++){
-            const normalizedInput = [Inputs[i].wt0 / maxValues[0], Inputs[i].wt4 / maxValues[1], 
-                Inputs[i].wt7 / maxValues[2], Inputs[i].wt14 / maxValues[3], Inputs[i].wt21 / maxValues[4], Inputs[i].age / maxValues[5]];
-            const newFeatures = tf.tensor2d([normalizedInput], [1, 6]);
+            console.log(Inputs[i]);
+            const normalizedInput = [Inputs[i].wt0 / maxValues[0], Inputs[i].wt4 / maxValues[1], Inputs[i].wt7 / maxValues[2], Inputs[i].wt14 / maxValues[3], Inputs[i].wt21 / maxValues[4]];
+            const newFeatures = tf.tensor2d([normalizedInput], [1, 5]);
             const predictedAvgWt = model.predict(newFeatures).dataSync()[0];
             x = [...x, {...Inputs[i], 'predictedAvgWt': predictedAvgWt }]
         }
@@ -96,7 +96,7 @@ useEffect(() => {
 
     return (
         <div className='flex flex-col items-center justify-center mb-10'>
-            <Header title={''}/>
+            <Header title={'Wt Broiler Prediction Model'}/>
 
             {model != null && <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
                 <img src='./ml.jpg' alt="" className='h-[100px] w-[100px] rounded-full'/>

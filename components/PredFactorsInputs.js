@@ -10,9 +10,9 @@ const PredFactorsInputs = ({addInputs, PredictedResults}) => {
 
     const validateSubmit = ()=>{
         // validate inputs
-        const {wt0, wt4, wt7, wt14, wt21} = Inputs
+        const {wt0, wt4, wt7, wt14, wt21, age} = Inputs
 
-        if(wt0 > 0 && wt4 > 0 && wt7 > 0 && wt14 > 0 && wt21 > 0){
+        if(wt0 > 0 && wt4 > 0 && wt7 > 0 && wt14 > 0 && wt21 > 0 && age > 0){
             addInputs(Inputs)
             setInputs(
                         {  
@@ -22,7 +22,8 @@ const PredFactorsInputs = ({addInputs, PredictedResults}) => {
                         "wt4":0,        
                         "wt7":0,        
                         "wt14":0,        
-                        "wt21":0,        
+                        "wt21":0, 
+                        "age":0       
                 }
             ) 
             setValidate(true)
@@ -83,6 +84,13 @@ const PredFactorsInputs = ({addInputs, PredictedResults}) => {
                     <input id='factor7' type='number'  value = {Inputs.wt21}
                         className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
                         onChange={(e)=>setInputs({...Inputs, "wt21":+e.target.value})}
+                    />
+                </div>
+                <div className='flex flex-col flex-1'>
+                    <label htmlFor="factor8" className='font-semibold text-blue-700'>Catch Age</label>
+                    <input id='factor8' type='number'  value = {Inputs.age}
+                        className='w-full p-2 text-lg text-center text-gray-500 border-2 border-gray-300 rounded-md focus:outline-none'
+                        onChange={(e)=>setInputs({...Inputs, "age":+e.target.value})}
                     />
                 </div>
 

@@ -35,6 +35,9 @@ const InputsTable = ({data, clearInput}) => {
                             <span className='text-gray-600'>21 Day Wt.</span>
                         </th>
                         <th scope="col" className='text-center align-middle '>
+                            <span className='text-gray-600'>Catch Age</span>
+                        </th>
+                        <th scope="col" className='text-center align-middle '>
                             <span className='text-gray-600'></span>
                         </th>
                     </tr>
@@ -66,6 +69,9 @@ const InputsTable = ({data, clearInput}) => {
                                 </td>
                                 <td  className='py-3 text-center'>
                                     <span className = {`${styleOne}`}>{d.wt21}</span> 
+                                </td>
+                                <td  className='py-3 text-center'>
+                                    <span className = {`${styleOne}`}>{d.age}</span> 
                                 </td>
                                 <td  className='py-3 text-center' >
                                     <span className = {`${styleOne} `}>
