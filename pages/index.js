@@ -95,7 +95,7 @@ useEffect(() => {
 
     return (
         <div className='flex flex-col items-center justify-center mb-10'>
-            <Header title={'Wt Broiler Brediction Model'}/>
+            <Header title={'Wt Broiler Prediction Model'}/>
 
             {model != null && <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
                 <img src='./ml.jpg' alt="" className='h-[100px] w-[100px] rounded-full'/>
