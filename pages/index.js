@@ -99,7 +99,7 @@ useEffect(() => {
             <Header title={''}/>
 
             {model != null && <div className='flex flex-col items-center justify-center p-3 mt-10 space-y-3 sm:space-x-3 sm:flex-row sm:items-center sm:justify-between'>
-                <img src='./ml.jpg' alt="" className='h-[100px] w-[100px] rounded-full'/>
+                <img src='./ml2.jpg' alt="" className='h-[100px] w-[100px] rounded-full hover:scale-125'/>
                 <h1 className='font-serif text-3xl text-center text-gray-600 duration-100 ease-in-out animate-pulse'
                     >Broiler Avg Live Weight Predection ML Model v1
                      <Link href='/about' >

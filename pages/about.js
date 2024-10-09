@@ -16,9 +16,7 @@ const About = () => {
                 <p>
                     - The Model Has Been Traing At More Than 4,000 Records To Optain Accurate Prediction.
                 </p>                
-                <p>
-                    - In Version 2 Model Will Include Catching Age As a Factor In Predection.
-                </p>
+
             </div>
         </div>
     );
