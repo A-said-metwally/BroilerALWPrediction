@@ -9,7 +9,7 @@ const About = () => {
                 <p>
                     - This App Disigned By BI & Solution Unit Team At October 2024
                 </p>               
-                 <p>
+                <p>
                     - The Model Can Predict Chicken Final Live Weight At The Day 21 of Broiler Cycle,
                         Regarding Recorded Weights Form Zero Day Age to 21 Day Age and Expected Catching Age.
                 </p> 
@@ -23,7 +23,7 @@ const About = () => {
                     - It Can handle a large number of features and complex relationships between them, especially when the dataset is large and high-dimensional.
                 </p>
                 <p>
-                    - The Model Has Been Trained At More Than 4,000 Records To Optain Accurate Prediction and
+                    - The Model Has Been Trained At More Than 4,000 Records To Optain Accurate Prediction.
                 </p>                
 
             </div>
