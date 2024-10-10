@@ -19,7 +19,12 @@ const ML = () => {
     const [Inputs, setInputs] = useState([])
     const [PredictedResults, setPredictedResults] = useState([])
 
-    const addInputs = (e)=>setInputs([...Inputs, {"Sr":Inputs.length + 1, ...e}])
+    const addInputs = (e)=>{
+        setInputs([...Inputs, {"Sr":Inputs.length + 1, ...e}])
+        if(PredictedResults.length > 0){
+            handlePredict()
+        }
+    }
 
     const clearInput = (e)=>{
         const updatedArray = Inputs.filter((obj) => obj.Sr !== e);

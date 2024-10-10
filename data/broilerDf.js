@@ -1,4 +1,3 @@
-
 export const broilerDf = [
  {
   wt0: 45.51999999999999,

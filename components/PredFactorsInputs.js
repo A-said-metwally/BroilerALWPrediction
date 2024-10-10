@@ -94,7 +94,7 @@ const PredFactorsInputs = ({addInputs, PredictedResults}) => {
                     />
                 </div>
 
-                <button onClick={()=>validateSubmit()} disabled = {PredictedResults.length > 0 ? true : false}>
+                <button onClick={()=>validateSubmit()}>
                     <PlusCircleIcon 
                     className='hidden w-10 h-10 mb-2 sm:block text-sky-500 hover:text-green-500 hover:cursor-pointer'
                     />
@@ -102,7 +102,7 @@ const PredFactorsInputs = ({addInputs, PredictedResults}) => {
                     
                 <button 
                     className='w-full px-4 py-2 font-serif text-xl text-white rounded-lg sm:hidden bg-sky-400 hover:bg-green-400 hover:cursor-pointer'
-                    onClick={()=>validateSubmit()} disabled = {PredictedResults.length > 0 ? true : false}
+                    onClick={()=>validateSubmit()}
                 >Submit</button>
             </div>
             {!Validate && <p className='mt-2 text-xl font-semibold text-center text-red-500 animate-pulse'>Please Complete Data</p>}
