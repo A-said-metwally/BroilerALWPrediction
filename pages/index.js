@@ -67,7 +67,7 @@ useEffect(() => {
     const xs = tf.tensor2d(normalizedFeatures, [normalizedFeatures.length, 6]);
     const ys = tf.tensor1d(targets, 'float32');
 
-    const model = tf.sequential();
+    const model = tf.sequential(); // neural network
     model.add(tf.layers.dense({ units: 10, inputShape: [6] }));
     model.add(tf.layers.dense({ units: 1 }));
 
