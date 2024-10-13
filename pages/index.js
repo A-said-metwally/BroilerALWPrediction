@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Prediction from './prediction';
 import Header from '../components/Header';
 import { PlusCircleIcon, SearchIcon, CogIcon, CalculatorIcon, } from '@heroicons/react/outline'
-import { Label } from 'recharts';
+import * as XLSX from 'xlsx'
 import PredFactorsInputs from '../components/PredFactorsInputs';
 import Loading from '../components/Loading';
 import InputsTable from '../components/InputsTable';
@@ -21,9 +20,6 @@ const ML = () => {
 
     const addInputs = (e)=>{
         setInputs([...Inputs, {"Sr":Inputs.length + 1, ...e}])
-        if(PredictedResults.length > 0){
-            handlePredict()
-        }
     }
 
     const clearInput = (e)=>{
@@ -97,7 +93,22 @@ useEffect(() => {
         setPredictedResults([...x])
     }
 
+    // add new inputs and predict fn
+    useEffect(()=>{
+        if(PredictedResults.length > 0){
+            handlePredict()
+     }
+    },[Inputs])
  
+
+    // export excel
+    const handleExportExcel = ()=>{
+        var wb = XLSX.utils.book_new(),
+        ws = XLSX.utils.json_to_sheet(PredictedResults);
+    
+        XLSX.utils.book_append_sheet(wb, ws, 'worksheet' )
+            XLSX.writeFile(wb, `Predicted_data.xlsx` )
+    }
 
     return (
         <div className='flex flex-col items-center justify-center mb-10'>
@@ -131,6 +142,7 @@ useEffect(() => {
                             >Clear</button>
                             <button 
                                 className='px-4 py-1 bg-gray-300 rounded-md hover:bg-green-500 hover:text-white hover:cursor-pointer'
+                                onClick={()=>handleExportExcel()}
                             >Xlsx</button>
                             <button 
                                 className='px-4 py-1 bg-gray-300 rounded-md hover:bg-green-500 hover:text-white hover:cursor-pointer'

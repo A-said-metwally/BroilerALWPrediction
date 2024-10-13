@@ -7,7 +7,7 @@ const About = () => {
             <Header title={''}/>
             <div className='container p-10 space-y-3 font-mono text-lg text-gray-500'>
                 <p>
-                    - This App Disigned By BI & Solution Unit Team At October 2024
+                    - This App Disigned By BI & Solutions Unit Team At October 2024
                 </p>               
                 <p>
                     - The Model Can Predict Chicken Final Live Weight At The Day 21 of Broiler Cycle,
